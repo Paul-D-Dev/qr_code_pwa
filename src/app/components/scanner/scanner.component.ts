@@ -1,4 +1,7 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BarcodeFormat } from '@zxing/library';
+import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiediaries/ngx-qrcode';
+
 
 @Component({
   selector: 'app-scanner',
@@ -11,7 +14,16 @@ export class ScannerComponent implements OnInit {
   hasDevices: boolean | any;
   hasPermission: boolean | any;
   qrResult = '';
+  allowedFormats = [
+    BarcodeFormat.QR_CODE,
+    BarcodeFormat.EAN_13,
+    BarcodeFormat.CODE_128,
+    BarcodeFormat.DATA_MATRIX,
+    BarcodeFormat.EAN_8,
+    BarcodeFormat.CODE_39];
 
+    elementType = NgxQrcodeElementTypes.URL;
+    correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   constructor() {}
 
   ngOnInit(): void {

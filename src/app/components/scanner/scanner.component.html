@@ -12,6 +12,7 @@
     [(device)]="currentDevice"
     (scanSuccess)="onCodeResult($event)"
     (permissionResponse)="onHasPermission($event)"
+    [formats]="allowedFormats"
   ></zxing-scanner>
   <div class="qr-area" *ngIf="hasPermission">
     <div class="area"></div>
@@ -19,3 +20,10 @@
 </div>
 
 {{qrResult}}
+
+<ngx-qrcode
+  [elementType]="elementType"
+  [value]="qrResult"
+  cssClass="aclass"
+  [errorCorrectionLevel]="correctionLevel">
+</ngx-qrcode>
