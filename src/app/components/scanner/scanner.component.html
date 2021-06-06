@@ -1,0 +1,21 @@
+<div *ngIf="hasPermission === false">
+  <p>Nous n'avons pas la permission d'utiliser la caméra de l'appareil.
+    Merci de changer dans vos permissions l'accès à votre caméra pour
+    utiliser notre service.
+  </p>
+</div>
+
+<div class="qr-scan-area" >
+  <zxing-scanner
+    class="area"
+    #scanner
+    [(device)]="currentDevice"
+    (scanSuccess)="onCodeResult($event)"
+    (permissionResponse)="onHasPermission($event)"
+  ></zxing-scanner>
+  <div class="qr-area" *ngIf="hasPermission">
+    <div class="area"></div>
+  </div>
+</div>
+
+{{qrResult}}
