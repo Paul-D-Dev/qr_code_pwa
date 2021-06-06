@@ -9,6 +9,8 @@ import { NgxQrcodeElementTypes, NgxQrcodeErrorCorrectionLevels } from '@techiedi
   styleUrls: ['./scanner.component.scss']
 })
 export class ScannerComponent implements OnInit {
+
+  // Reader QRCODE
   availableDevices: MediaDeviceInfo[] | any;
   currentDevice: MediaDeviceInfo | any = null;
   hasDevices: boolean | any;
@@ -22,8 +24,11 @@ export class ScannerComponent implements OnInit {
     BarcodeFormat.EAN_8,
     BarcodeFormat.CODE_39];
 
-    elementType = NgxQrcodeElementTypes.URL;
-    correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+  // Generator QRCODE
+  elementType = NgxQrcodeElementTypes.URL;
+  correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
+
+
   constructor() {}
 
   ngOnInit(): void {
@@ -43,7 +48,7 @@ export class ScannerComponent implements OnInit {
   //Scans the QR code
   onCodeResult(resultString: any): void {
     console.log(resultString);
-    console.log(this.currentDevice);
+    console.log(typeof resultString);
 
     this.qrResult = resultString;
   }
@@ -57,7 +62,12 @@ export class ScannerComponent implements OnInit {
     navigator.mediaDevices.getUserMedia({video: true});
   }
 
-
+  getSrcImageQrCode() {
+    const qrcode = document.querySelector('.aclass');
+    const img = qrcode?.getElementsByTagName('img')[0];
+    const base64 = img?.src;
+    console.log(base64);
+  }
 
   // //This function check if the QR code has a valid JSON as data
   // checkQRJSON(qrString: string): boolean {

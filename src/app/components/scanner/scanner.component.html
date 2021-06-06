@@ -19,11 +19,23 @@
   </div>
 </div>
 
-{{qrResult}}
+<div *ngIf="qrResult !== ''">
+  <ngx-qrcode
+    [elementType]="elementType"
+    [value]="qrResult"
+    cssClass="aclass"
+    [errorCorrectionLevel]="correctionLevel">
+  </ngx-qrcode>
 
-<ngx-qrcode
-  [elementType]="elementType"
-  [value]="qrResult"
-  cssClass="aclass"
-  [errorCorrectionLevel]="correctionLevel">
-</ngx-qrcode>
+  <div class="resultQR">
+    <ng-container *ngIf="qrResult.startsWith('http') || qrResult.startsWith('https'); else notLink">
+      <a [href]="qrResult" target="_blank">Lien</a>
+    </ng-container>
+    <ng-template #notLink>
+      <p>{{qrResult}}</p>
+    </ng-template>
+  </div>
+
+  <button (click)="getSrcImageQrCode()">SAVE</button>
+</div>
+
