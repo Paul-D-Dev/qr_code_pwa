@@ -1,5 +1,5 @@
 {
-  "name": "qr code",
+  "name": "qr_code",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
