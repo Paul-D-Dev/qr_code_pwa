@@ -32,13 +32,15 @@ export class ScannerComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    navigator.permissions.query({name: 'camera'})
-    .then((perm) => {
-      console.log(perm);
-      if (perm.state === 'denied') {
-        console.log('La demande à la caméra a été refusée');
-      }
-    });
+    console.log(this.currentDevice)
+
+    // navigator.permissions.query({name: "notifications"})
+    // .then((perm) => {
+    //   console.log(perm);
+    //   if (perm.state === 'denied') {
+    //     console.log('La demande à la caméra a été refusée');
+    //   }
+    // });
   }
 
   clearResult(): void {
